@@ -1,0 +1,185 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{cite}
+
+\definecolor{highlight}{RGB}{255, 255, 0}
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\begin{document}
+
+% Logos
+\begin{minipage}{0.45\textwidth}
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/epnLogo.jpg}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \raggedleft
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/FIS_logo.jpg}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% Títulos principales
+\begin{center}
+    \textbf{ESCUELA POLITÉCNICA NACIONAL}\\[0.2cm]
+    \textbf{FACULTAD DE INGENIERÍA DE SISTEMAS}\\[0.2cm]
+    \textbf{INGENIERÍA {\textbf{EN COMPUTACIÓN}}}
+\end{center}
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+% Datos principales
+\noindent\textbf{PERÍODO ACADÉMICO:} 2025-A\\[0.2cm]
+\noindent\textbf{ASIGNATURA:} ICCD412 Métodos Numéricos \hfill \textbf{GRUPO:} GR2\\[0.2cm]
+\noindent\textbf{TIPO DE INSTRUMENTO:} Práctica 2\\[0.2cm]
+\noindent\textbf{FECHA DE ENTREGA LÍMITE:} 04/05/2025\\[0.2cm]
+\noindent\textbf{ALUMNO:} Murillo Tobar Juan
+
+\vspace{0.5cm}
+\hrule
+\vspace{1cm}
+
+
+% Secciones
+\section*{TEMA}
+Representación numérica 64 bits
+
+\vspace{0.5cm}
+
+\section*{OBJETIVOS}
+\begin{itemize}
+    \item Conocer la representación IEE 754 en 32 y 64 bits, y entender como funcionan las fórmulas para su conversión a decimal.
+    \item Analizar las conversiones de formato IEE 754 a decimal mediante el cálculo del error relativo.
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{MARCO TEÓRICO}
+
+\large\textbf{Formato Punto Flotante}
+\normalsize\newline\newline
+Para la representación de números en punto flotante dentro de la industria de la computación se tiene como estándar el formato IEE 754, pero eso no quiere decir que no existen otros modelos aparte del mismo. Dicho estándar se compone de tres partes: el signo, la mantisa y un exponente.
+Como se menciona en \cite{sauer2013}, existen 3 posibles niveles dentro del mismo formato: precision simple, doble y doble larga. Estos 3 se diferencian por el número de bits asignados a cada número de punto flotante, los cuales son 32, 64 y 80 respectivamente. Ademas, los 3 niveles comparten una particularidad dentro de la computadora, las tres partes de la representación siempre se guardan en una sola palabra de computadora.
+
+\vspace{0.5cm}
+
+\section*{DESARROLLO}
+Debemos transformar de decimal a representación IEE 754 de 64 bits y viceversa el número 263.3. Posterior a ello debemos calcular el error relativo a 3 cifras de redondeo.
+Representación binaria
+
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $263 \div 2 = 131.5$ & $1$\\
+        $131.5 \div 2 = 65.75$ & $1$\\
+        $65.75 \div 2 = 32.875$ & $1$\\
+        $32.875 \div 2 = 16.4375$ & $0$\\
+        $16.4375 \div 2 = 8.21875$ & $0$\\
+        $8.21875 \div 2 = 4.103375$ & $0$\\
+        $4.103375 \div 2 = 2.0516875$ & $0$\\
+        $2.0516875 \div 2 = 1.02584375$ & $0$\\
+        $1.02584375 \div 2 = 0.512921875$ & $1$\\
+        \hline
+      \end{tabular} 
+\end{center}
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $0.3 \times 2 = 0.6$ & $0$\\
+        $0.6 \times 2 = 1.2$ & $1$\\
+        $0.2 \times 2 = 0.4$ & $0$\\
+        $0.4 \times 2 = 0.8$ & $0$\\
+        $0.8 \times 2 = 1.6$ & $1$\\
+        $0.6 \times 2 = 1.2$ & $1$\\
+        $0.2 \times 2 = 0.4$ & $0$\\
+        $0.4 \times 2 = 0.8$ & $0$\\
+        $0.8 \times 2 = 1.6$ & $1$\\
+        $0.6 \times 2 = 1.2$ & $1$\\
+        \hline
+      \end{tabular} 
+\end{center}
+Como se repite su parte decimal infinitamente representamos al número como:
+$$ 100000111.01\overline{0011}$$
+$$ 1.0000011101\overline{0011}*2^8$$
+
+Mantisa 
+$$0000 0111 0100 1100 1100 1100 1100 1100 1100 1100 1100 1100 1100$$
+Exponente
+$$Exponente= 1023+8=1031$$
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $1031 \div 2 = 515.5$ & $1$\\
+        $515.5 \div 2 = 257.75$ & $1$\\
+        $257.75 \div 2 = 128.875$ & $1$\\
+        $128.875 \div 2 = 64.4375$ & $0$\\
+        $64.4375 \div 2 = 32.21875$ & $0$\\
+        $32.21875 \div 2 = 16.109375$ & $0$\\
+        $16.109375 \div 2 = 8.0546875$ & $0$\\
+        $8.0546875 \div 2 = 4.02734375$ & $0$\\
+        $4.02734375 \div 2 = 2.013671875$ & $0$\\
+        $2.013671875 \div 2 = 1.006835938$ & $0$\\
+        $1.006835938\div 2 = 0.5034179688$ & $1$\\
+        \hline
+      \end{tabular} 
+\end{center}
+Representación IEE 754 en 64 bits.
+$$0 10000000111 0000 0111 0100 1100 1100 1100 1100 1100 1100 1100 1100 1100 1100$$
+
+Representación a decimal.
+\newline
+$Signo \Rightarrow 0$
+\newline$Exponente \Rightarrow 10000000111$ 
+\newline Representación en decimal del exponente:
+$$10000000111 \Rightarrow 1031$$
+Representación en decimal de la mantisa:
+$$0000 0111 0100 1100 1100 1100 1100 1100 1100 1100 1100 1100 1100 \Rightarrow 0.028515625$$
+Ahora reemplazamos en la formula todos los datos con 3 cifras decimales de redondeo
+
+$$x = (-1)^0 2^(1023-1031)*(1+.0.029)$$
+$$x = 263.424$$
+
+Calculamos el error relativo
+$$
+\left| \frac{263.3 - 263.424}{263.3} \right| = 4.709*10^{-4}
+$$
+
+Error relativo porcentual
+$$
+\left| \frac{263.3 - 263.424}{263.3}  *100\% \right| = 0.047\%
+$$ 
+
+
+\vspace{0.5cm}
+
+\section*{CONCLUSIONES}
+\begin{itemize}
+    \item El formato IEE 753 consta de 3 partes, las mismas que se calcularon de manera independiente para luego volverlas a unir para la representación final del número
+    \item Al realizar el cálculo del error se pudo determinar que cuando existe mayor número de conversiones es probable que exista un error entre el valor real y el calculado.
+\end{itemize}
+\vspace{0.5cm}
+\section*{RECOMENDACIONES}
+\begin{itemize}
+    \item Tener un dispositivo como una calculadora nos permite de manera sencilla calcular  algunas variables dentro de la ecuación para la conversion decimal a partir de su representación IEE 754, pero a su vez introduce errores de redondeo visibles.
+   
+\end{itemize}
+
+\vspace{0.5cm}
+
+
+\renewcommand{\refname}{\MakeUppercase{REFERENCIAS}}
+\bibliographystyle{IEEEtran}
+\bibliography{inFiles/References/references.bib}
+
+\end{document}

@@ -1,0 +1,419 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{cite}
+
+\definecolor{highlight}{RGB}{255, 255, 0}
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\begin{document}
+
+% Logos
+\begin{minipage}{0.45\textwidth}
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/epnLogo.jpg}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \raggedleft
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/FIS_logo.jpg}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% Títulos principales
+\begin{center}
+    \textbf{ESCUELA POLITÉCNICA NACIONAL}\\[0.2cm]
+    \textbf{FACULTAD DE INGENIERÍA DE SISTEMAS}\\[0.2cm]
+    \textbf{INGENIERÍA{\textbf{ EN COMPUTACIÓN}}}
+\end{center}
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+% Datos principales
+\noindent\textbf{PERÍODO ACADÉMICO:} 2025-A\\[0.2cm]
+\noindent\textbf{ASIGNATURA:} ICCD412 Métodos Numéricos \hfill \textbf{GRUPO:} GR2\\[0.2cm]
+\noindent\textbf{TIPO DE INSTRUMENTO:} Tarea 3\\[0.2cm]
+\noindent\textbf{FECHA DE ENTREGA LÍMITE:} 04/05/2025\\[0.2cm]
+\noindent\textbf{ALUMNO:} Murillo Tobar Juan 
+
+\vspace{0.5cm}
+\hrule
+\vspace{1cm}
+
+
+% Secciones
+\section*{TEMA}
+Representación Numérica
+
+\vspace{0.5cm}
+
+\section*{OBJETIVOS}
+\begin{itemize}
+    \item Conocer la representación IEE 754 en 32 y 64 bits, y entender como funcionan las fórmulas para su conversión a decimal.
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{MARCO TEÓRICO}
+\colorbox{highlight}{No solicitado} 
+
+\vspace{0.5cm}
+
+\section*{DESARROLLO}
+Primero, de los números planteados debemos transformar a formato IEEE754 32 y 64 bits. Comenzaremos con 32 bits
+\newline\newline
+\large{\textbf{1) -159,369}}
+\normalsize\newline
+Primero convertimos 159,369 a binario
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $159 \div 2 = 79.5$ & $1$\\
+        $79.5 \div 2 = 39.75$ & $1$\\
+        $39.75 \div 2 = 19.875$ & $1$\\
+        $19.875 \div 2 = 9.9375$ & $1$\\
+        $9.9375 \div 2 = 4.96875$ & $1$\\
+        $4.96875 \div 2 = 2.464375$ & $0$\\
+        $2.464375 \div 2 = 1.2421875$ & $0$\\
+        $1.2421875 \div 2 = 0.62109375$ & $1$\\
+        \hline
+      \end{tabular} 
+\end{center}
+
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $0.369 \times 2 = 0.738$ & $0$\\
+        $0.738 \times 2 = 1.476$ & $1$\\
+        $0.476 \times 2 = 0.952$ & $0$\\
+        $0.952 \times 2 = 1.904$ & $1$\\
+        $0.904 \times 2 = 1.808$ & $1$\\
+        $0.808 \times 2 = 1.616$ & $1$\\
+        $0.616 \times 2 = 1.232$ & $1$\\
+        $0.232 \times 2 = 0.464$ & $0$\\
+        $0.464 \times 2 = 0.928$ & $0$\\
+        $0.928 \times 2 = 1.856$ & $1$\\
+        $0.856\times 2 = 1.712$ & $1$\\
+        $0.712 \times 2 = 1.424$ & $1$\\
+        $0.424\times 2 = 0.848$ & $0$\\
+        $0.848 \times 2 = 1.696$ & $1$\\
+        $0.696 \times 2 = 1.392$ & $1$\\
+        $0.392 \times 2 = 0.784$ & $0$\\
+        \hline
+      \end{tabular} 
+\end{center}
+
+Entonces obtendríamos el siguiente número si truncamos la parte decimal, es decir solo tomamos los bits de nuestra tabla.
+$$10011111.0101111001110110$$
+$$1.00111110101111001110110*2^7$$
+Ahora sesgamos el exponente y lo convertimos a binario.
+$$Exponente= 127+7=134$$
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $134 \div 2 = 67$ & $0$\\
+        $67 \div 2 = 33.5$ & $1$\\
+        $33.5 \div 2 = 16.75$ & $1$\\
+        $16.75 \div 2 = 8.375$ & $0$\\
+        $8.375 \div 2 = 4.1875$ & $0$\\
+        $4.1875 \div 2 = 2.09375$ & $0$\\
+        $2.09375 \div 2 = 1.046875$ & $0$\\
+        $1.046875 \div 2 = 0.5234375$ & $1$\\
+        \hline
+      \end{tabular} 
+\end{center}
+$$Bin(133) = 10000110$$
+Ahora la representación IEE 754 sabiendo que el signo es 1 vendría dada por:
+
+$$11000011000111110101111001110110$$
+
+\large{\textbf{2) 3A,28F5C28F5C28}}
+\normalsize
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $3A$ & $0011 1010$\\
+        \hline
+      \end{tabular} 
+\end{center}
+Para la parte decimal tomaremos de 2 a 2 bytes. 
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $28F5$ & $0010 1000 1111 0101$\\
+        $C28F$ & $1100 0010 1000 1111$\\
+        $5C28$ & $0101 1100 0010 1000$\\
+        \hline
+      \end{tabular} 
+\end{center}
+$$0010 1000 1111 0101 1100 0010 1000 1111 0101 1100 0010 1000$$
+
+Su representación en binario: 
+$$11 1010.0010 1000 1111 0101 1100 0010 1000 1111 0101 1100 0010 1000$$
+Truncando la mantisa y moviendo la coma 
+$$1.1 1010 0010 1000 1111 0101 11 * 2^5$$
+$$Exponente= 127+5=132$$
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $132 \div 2 = 66$ & $0$\\
+        $66 \div 2 = 33$ & $0$\\
+        $33 \div 2 = 16.5$ & $1$\\
+        $16.5 \div 2 = 8.25$ & $0$\\
+        $8.25 \div 2 = 4.125$ & $0$\\
+        $4.125 \div 2 = 2.0625$ & $0$\\
+        $2.0625 \div 2 = 1.03125$ & $0$\\
+        $1.03125 \div 2 = 0.515625$ & $1$\\
+        \hline
+      \end{tabular} 
+\end{center}
+$$Bin(132) = 10000100$$
+Ahora la representación IEE 754 sabiendo que el signo es 0 vendría dada por:
+
+$$01000010011010001010001111010111$$
+
+\large{\textbf{3) 169,3}}
+\normalsize
+Primero convertimos 169,3 a binario
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $169 \div 2 = 84.5$ & $1$\\
+        $84.5 \div 2 = 42.25$ & $0$\\
+        $42.25 \div 2 = 21.125$ & $0$\\
+        $21.125 \div 2 = 10.5625$ & $1$\\
+        $10.5625 \div 2 = 5.28125$ & $0$\\
+        $5.28125 \div 2 = 2.640625$ & $1$\\
+        $2.640625 \div 2 = 1.3203125$ & $0$\\
+        $1.3203125 \div 2 = 0.66015625$ & $1$\\
+        \hline
+      \end{tabular} 
+\end{center}
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $0.3 \times 2 = 0.6$ & $0$\\
+        $0.6 \times 2 = 1.2$ & $1$\\
+        $0.2 \times 2 = 0.4$ & $0$\\
+        $0.4 \times 2 = 0.8$ & $0$\\
+        $0.8 \times 2 = 1.6$ & $1$\\
+        $0.6 \times 2 = 1.2$ & $1$\\
+        $0.2 \times 2 = 0.4$ & $0$\\
+        $0.4 \times 2 = 0.8$ & $0$\\
+        $0.8 \times 2 = 1.6$ & $1$\\
+        $0.6 \times 2 = 1.2$ & $1$\\
+        \hline
+      \end{tabular} 
+\end{center}
+Como se repite su parte decimal infinitamente representamos al número como:
+$$ 10101001.01\overline{0011}$$
+Movemos la coma, obtenemos el exponente y lo sesgamos
+$$ 1.010100101\overline{0011}*2^7$$
+$$Exponente= 127+7=134$$
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $134 \div 2 = 67$ & $0$\\
+        $67 \div 2 = 33.5$ & $1$\\
+        $33.5 \div 2 = 16.75$ & $1$\\
+        $16.75 \div 2 = 8.375$ & $0$\\
+        $8.375 \div 2 = 4.1875$ & $0$\\
+        $4.1875 \div 2 = 2.09375$ & $0$\\
+        $2.09375 \div 2 = 1.046875$ & $0$\\
+        $1.046875 \div 2 = 0.5234375$ & $1$\\
+        \hline
+      \end{tabular} 
+\end{center}
+$$Bin(134) = 10000110$$
+Finalmente la representación IEE 754 sabiendo que el signo es 0 vendría dada por:
+$$01000011001010010100110011001100$$
+
+Ahora realizamos las representaciones en 64 bits
+\newline\newline
+\large{\textbf{1) -159,369}}
+\normalsize
+\newline Representación binaria
+$$1.00111110101111001110110*2^7$$
+Mantisa
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $0.369 \times 2 = 0.738$ & $0$\\
+        $0.738 \times 2 = 1.476$ & $1$\\
+        $0.476 \times 2 = 0.952$ & $0$\\
+        $0.952 \times 2 = 1.904$ & $1$\\
+        $0.904 \times 2 = 1.808$ & $1$\\
+        $0.808 \times 2 = 1.616$ & $1$\\
+        $0.616 \times 2 = 1.232$ & $1$\\
+        $0.232 \times 2 = 0.464$ & $0$\\
+        $0.464 \times 2 = 0.928$ & $0$\\
+        $0.928 \times 2 = 1.856$ & $1$\\
+        $0.856\times 2 = 1.712$ & $1$\\
+        $0.712 \times 2 = 1.424$ & $1$\\
+        $0.424\times 2 = 0.848$ & $0$\\
+        $0.848 \times 2 = 1.696$ & $1$\\
+        $0.696 \times 2 = 1.392$ & $1$\\
+        $0.392 \times 2 = 0.784$ & $0$\\ %23
+        $0.784 \times 2 = 1.568$ & $1$\\
+        $0.568 \times 2 = 1.136$ & $1$\\
+        $0.136 \times 2 = 0.272$ & $0$\\
+        $0.272 \times 2 = 0.544$ & $0$\\
+        $0.544 \times 2 = 1.088$ & $1$\\
+        $0.088 \times 2 = 0.176$ & $0$\\
+        $0.176 \times 2 = 0.352$ & $0$\\
+        $0.352 \times 2 = 0.704$ & $0$\\
+        $0.704 \times 2 = 1.408$ & $1$\\
+        $0.408 \times 2 = 0.816$ & $0$\\
+        $0.816\times 2 = 1.632$ & $1$\\
+        $0.632 \times 2 = 1.264$ & $1$\\
+        $0.264\times 2 = 0.528$ & $0$\\
+        $0.528 \times 2 = 1.056$ & $1$\\
+        $0.056 \times 2 = 0.112$ & $0$\\
+        $0.112 \times 2 = 0.224$ & $0$\\ %39
+        $0.224\times 2 = 0.448$ & $0$\\
+        $0.448 \times 2 = 0.896$ & $0$\\
+        $0.896\times 2 = 1.792$ & $1$\\
+        $0.792 \times 2 = 1.584$ & $1$\\
+        $0.584 \times 2 = 1.168$ & $1$\\
+        $0.168 \times 2 = 0.336$ & $0$\\ %45 Av
+        $0.336 \times 2 = 0.672$ & $0$\\ 
+        $0.672\times 2 = 1.344$ & $1$\\
+        $0.344 \times 2 = 0.688$ & $0$\\
+        $0.688\times 2 = 1.376$ & $1$\\
+        $0.376 \times 2 = 0.752$ & $0$\\
+        $0.752 \times 2 = 1.504$ & $1$\\
+        $0.504 \times 2 = 1.008$ & $1$\\ %52
+
+        \hline
+      \end{tabular} 
+\end{center}
+Exponente
+$$Exponente= 1023+7=1030$$
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $1030 \div 2 = 515$ & $0$\\
+        $515 \div 2 = 257.5$ & $1$\\
+        $257.5 \div 2 = 128.75$ & $1$\\
+        $128.75 \div 2 = 64.375$ & $0$\\
+        $64.375 \div 2 = 32.1875$ & $0$\\
+        $32.1875 \div 2 = 16.09375$ & $0$\\
+        $16.09375 \div 2 = 8.046875$ & $0$\\
+        $8.046875 \div 2 = 4.0234375$ & $0$\\
+        $4.0234375 \div 2 = 2.01171875$ & $0$\\
+        $2.01171875 \div 2 = 1.005859375$ & $0$\\
+        $1.005859375 \div 2 = 0.5029$ & $1$\\
+        \hline
+      \end{tabular} 
+\end{center}
+Representación IEE 754 en 64 bits.
+$$1100000001100011111010111100111011011001000101101000011100101011$$
+\large{\textbf{2) 3A,28F5C28F5C28}}
+\normalsize
+\newline Representación binaria
+$$1.1 1010 0010 1000 1111 0101 1100 0010 1000 1111 0101 1100 0010 1000*2^5$$
+
+Mantisa 
+$$1 1010 0010 1000 1111 0101 1100 0010 1000 1111 0101 1100 0010 100$$
+
+Exponente
+$$Exponente= 1023+5=1028$$
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $1028 \div 2 = 514$ & $0$\\
+        $514 \div 2 = 257$ & $0$\\
+        $257 \div 2 = 128.5$ & $1$\\
+        $128.5 \div 2 = 64.25$ & $0$\\
+        $64.25 \div 2 = 32.125$ & $0$\\
+        $32.125 \div 2 = 16.0625$ & $0$\\
+        $16.0625 \div 2 = 8.03125$ & $0$\\
+        $8.03125 \div 2 = 4.015625$ & $0$\\
+        $4.015625 \div 2 = 2.0078125$ & $0$\\
+        $2.0078125 \div 2 = 1.00390625$ & $0$\\
+        $1.00390625 \div 2 = 0.5019$ & $1$\\
+        \hline
+      \end{tabular} 
+\end{center}
+Representación IEE 754 en 64 bits.
+$$0100000001001101000101000111101011100001010001111010111000010100$$
+
+\large{\textbf{3) 169,3}}
+\normalsize
+\newline Representación binaria
+$$ 1.010100101\overline{0011}*2^7$$
+
+Mantisa 
+$$0101 00101 0011 0011 0011 0011 0011 0011 0011 0011 0011 0011 001$$
+Exponente
+$$Exponente= 1023+7=1030$$
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        $1030 \div 2 = 515$ & $0$\\
+        $515 \div 2 = 257.5$ & $1$\\
+        $257.5 \div 2 = 128.75$ & $1$\\
+        $128.75 \div 2 = 64.375$ & $0$\\
+        $64.375 \div 2 = 32.1875$ & $0$\\
+        $32.1875 \div 2 = 16.09375$ & $0$\\
+        $16.09375 \div 2 = 8.046875$ & $0$\\
+        $8.046875 \div 2 = 4.0234375$ & $0$\\
+        $4.0234375 \div 2 = 2.01171875$ & $0$\\
+        $2.01171875 \div 2 = 1.005859375$ & $0$\\
+        $1.005859375 \div 2 = 0.5029$ & $1$\\
+        \hline
+      \end{tabular} 
+\end{center}
+Representación IEE 754 en 64 bits.
+$$0100000001100101001010011001100110011001100110011001100110011001$$
+
+Segundo debemos convertir a decimal las siguientes representaciones IEE 754 en 64 y 32 respectivamente
+
+$$0 10000000111 1000111010100011110101110000101000111101011100001010$$
+$Signo \Rightarrow 0$
+\newline$Exponente \Rightarrow 10000000111$ 
+\newline Representación en decimal del exponente:
+$$10000000111 \Rightarrow 1031$$
+Representación en decimal de la mantisa:
+$$1000 1110 1010 0011 1101 0111 0000 1010 0011 1101 0111 0000 1010 \Rightarrow 0.5571875$$
+Ahora reemplazamos en la formula todos los datos
+
+$$x = (-1)^0 2^(1031-1023)*(1+.5571875)$$
+$$x = 398.64$$
+
+Ahora el de 32 bits
+$$1 10000110 10011000000110011001101$$
+$Signo \Rightarrow 1$
+\newline$Exponente \Rightarrow 10000110$ 
+\newline Representación en decimal del exponente:
+$$10000110 \Rightarrow 134$$
+Representación en decimal de la mantisa:
+$$1001 1000 0001 1001 1001 101 \Rightarrow 0.5941406488$$
+Ahora reemplazamos en la formula todos los datos
+
+$$x = (-1)^1 2^(134-127)*(1+.5941406488)$$
+$$x = -204.0500031$$
+
+
+
+
+
+
+
+\vspace{0.5cm}
+\renewcommand{\refname}{\MakeUppercase{REFERENCIAS}}
+%\bibliographystyle{IEEEtran}
+%\bibliography{inFiles/References/references.bib}
+
+
+\end{document}

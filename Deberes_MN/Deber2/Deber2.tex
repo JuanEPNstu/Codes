@@ -1,0 +1,118 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{cite}
+
+\definecolor{highlight}{RGB}{255, 255, 0}
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\begin{document}
+
+% Logos
+\begin{minipage}{0.45\textwidth}
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/epnLogo.jpg}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \raggedleft
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/FIS_logo.jpg}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% Títulos principales
+\begin{center}
+    \textbf{ESCUELA POLITÉCNICA NACIONAL}\\[0.2cm]
+    \textbf{FACULTAD DE INGENIERÍA DE SISTEMAS}\\[0.2cm]
+    \textbf{INGENIERÍA{\textbf{ EN COMPUTACIÓN}}}
+\end{center}
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+% Datos principales
+\noindent\textbf{PERÍODO ACADÉMICO:} 2025-A\\[0.2cm]
+\noindent\textbf{ASIGNATURA:} ICCD412 Métodos Numéricos \hfill \textbf{GRUPO:} GR2\\[0.2cm]
+\noindent\textbf{TIPO DE INSTRUMENTO:} Tarea 2\\[0.2cm]
+\noindent\textbf{FECHA DE ENTREGA LÍMITE:} 04/05/2025\\[0.2cm]
+\noindent\textbf{ALUMNO:} Murillo Tobar Juan 
+
+\vspace{0.5cm}
+\hrule
+\vspace{1cm}
+
+
+% Secciones
+\section*{TEMA}
+Cálculo de error
+
+\vspace{0.5cm}
+
+\section*{OBJETIVOS}
+\begin{itemize}
+    \item Practicar el cálculo de los cuatro tipo de errores (real, absoluto, relativo, relativo porcentual) para futuros problemas dentro de la asignatura.
+    \item Reconocer las diferencias entre el error de truncamiento y el error de redondeo, y aprender cómo calcular ambos.
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{MARCO TEÓRICO}
+\colorbox{highlight}{No solicitado} 
+
+\vspace{0.5cm}
+
+\section*{DESARROLLO}
+Tomamos la constante $\pi$  para realizar truncamiento y redondeo a 4 cifras significativas. Luego debíamos obtener los resultados de los 4 errores.
+
+\large\textbf{Con redondeo}
+\begin{itemize}
+\item Error Real
+$$\pi - 3.142 = -0.0004073$$
+\item Error Absoluto
+$$
+\left| \pi - 3.142 \right| = 0.0004073
+$$
+\item Error Relativo
+$$
+\left| \frac{\pi - 3.142}{\pi} \right| = 0.0001297
+$$
+\item Error Relativo Porcentual
+$$
+\left| \frac{\pi - 3.142}{\pi} *100\% \right| = 0.01297\%
+$$ 
+\end{itemize}
+\large\textbf{Con truncamiento}
+\begin{itemize}
+    \item Error Real
+    $$\pi - 3.141 = 0.0005926$$
+    \item Error Absoluto
+    $$
+    \left| \pi - 3.141 \right| = 0.0005926
+    $$
+    \item Error Relativo
+    $$
+    \left| \frac{\pi - 3.141}{\pi} \right| = 0.0001886
+    $$
+    \item Error Relativo Porcentual
+    $$
+    \left| \frac{\pi - 3.141}{\pi} *100\% \right| = 0.01886\%
+    $$ 
+    \end{itemize}
+\vspace{0.5cm}
+
+
+\renewcommand{\refname}{\MakeUppercase{REFERENCIAS}}
+%\bibliographystyle{IEEEtran}
+%\bibliography{inFiles/References/references.bib}
+
+
+\end{document}

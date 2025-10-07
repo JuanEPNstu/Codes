@@ -1,0 +1,249 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{cite}
+
+\definecolor{highlight}{RGB}{255, 255, 0}
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\begin{document}
+
+% Logos
+\begin{minipage}{0.45\textwidth}
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/epnLogo.jpg}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \raggedleft
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/FIS_logo.jpg}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% Títulos principales
+\begin{center}
+    \textbf{ESCUELA POLITÉCNICA NACIONAL}\\[0.2cm]
+    \textbf{FACULTAD DE INGENIERÍA DE SISTEMAS}\\[0.2cm]
+    \textbf{INGENIERÍA {\textbf{EN COMPUTACIÓN}}}
+\end{center}
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+% Datos principales
+\noindent\textbf{PERÍODO ACADÉMICO:} 2025-A\\[0.2cm]
+\noindent\textbf{ASIGNATURA:} ICCD412 Métodos Numéricos \hfill \textbf{GRUPO:} GR2\\[0.2cm]
+\noindent\textbf{TIPO DE INSTRUMENTO:} Práctica 1\\[0.2cm]
+\noindent\textbf{FECHA DE ENTREGA LÍMITE:} 04/05/2025\\[0.2cm]
+\noindent\textbf{ALUMNO:} Murillo Tobar Juan
+
+\vspace{0.5cm}
+\hrule
+\vspace{1cm}
+
+
+% Secciones
+\section*{TEMA}
+Tipos de errores
+
+\vspace{0.5cm}
+
+\section*{OBJETIVOS}
+\begin{itemize}
+    \item Comprender y utilizar las distintas ecuaciones para la obtención de los cuatro tipos de errores(real, absoluto, relativo, relativo porcentual) con la finalidad de resolver los problemas planteados en esta practica.
+    \item Practicar mediante la resolución de ejercicios para adquirir mayor destreza con problemas relacionados al tema de esta practica.
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{MARCO TEÓRICO}
+
+\large\textbf{Errores de redondeo y aritmética computacional}
+\normalsize\newline\newline
+Dentro de los métodos numéricos es muy común obtener errores de distinto tipo, puesto que la soluciones son aproximadas o  directamente expresadas como expresiones matemáticas.
+Uno de los errores mas frecuentes y que es mencionado en \cite{book:2608618} es el error de redondeo producido por sistemas digitales como es el caso de una calculadora, ya que, debido a que su aritmética se limita a dar soluciones con un número finito de dígitos. 
+En nuestro contexto es importante mencionarlo puesto que para la asignatura es esencial el uso de este dispositivo, por lo que no deberíamos pensar que no existe errores al usar una calculadora o una computadora.
+\vspace{0.5cm}
+
+\section*{DESARROLLO}
+\large\textbf{CONJUNTO DE EJERCICIOS 1.2}
+\normalsize\newline
+\textbf{1}.Calcule los errores absoluto y relativo en las aproximaciones de $p$ por $p^{*}$ (4 cifras significativas)
+\newline\textbf{a) Error absoluto}
+$$\left| \pi -3.143 \right| = 1.40734641*10^{-3}$$
+
+\textbf{a) Error relativo}
+$$\frac{\left|\pi - 3.143 \right|}{\pi} = 4.479722757*10^{-4}$$
+
+\textbf{b) Error absoluto}
+$$\left| \pi - 3.142 \right| = 4.073464102*10^{-4}$$
+
+\textbf{b) Error relativo}
+$$\frac{\left|\pi - 3.142 \right|}{\pi} = 1.296623895*10^{-4}$$
+
+\textbf{c) Error absoluto}
+$$\left| e - 2.718 \right| = 2.81828459*10^{-4}$$
+
+\textbf{c) Error relativo}
+$$\frac{\left|e - 2.718 \right|}{e} = 1.03678896*10^{-4}$$
+
+\textbf{d) Error absoluto}
+$$\left| \sqrt{2} - 1.414 \right| = 2.135623731*10^{-4}$$
+
+\textbf{d) Error relativo}
+$$\frac{\left|\sqrt{2} - 1.414  \right|}{\sqrt{2}} = 1.510114022*10^{-4}$$
+
+\textbf{2}.Calcule los errores absoluto y relativo en las aproximaciones de $p$ por $p^{*}$ (4 cifras significativas)
+\newline\textbf{a) Error absoluto}
+$$\left| e^{10} - 2200*10^1 \right| = 26.46579481$$
+
+\textbf{a) Error relativo}
+$$\frac{\left|e^{10} - 2200*10^1 \right|}{e^{10}} = 1.201545225*10^{-3}$$
+
+\textbf{b) Error absoluto}
+$$\left|10^{\pi} - 1400 \right| = 14.54426863$$
+
+\textbf{b) Error relativo}
+$$\frac{\left|10^{\pi} - 1400 \right|}{10^{\pi}} = 0.0104978227$$
+
+\textbf{c) Error absoluto}
+$$\left| 8! - 3990*10^1 \right| = 420$$
+
+\textbf{c) Error relativo}
+$$\frac{\left|8! - 3990*10^1 \right|}{8!} = 0.01041667$$
+
+\textbf{d) Error absoluto}
+$$\left| 9! - 3595. \right| = 359285$$
+
+\textbf{d) Error relativo}
+$$\frac{\left|9! - 3595.\right|}{9!} = 0.9900931437$$
+
+\textbf{3}.Encuentre el intervalo más largo en el que se debe encontrar $p^{*}$  para aproximarse a $p$ con error relativomáximo de $10^{-4}$ para cada valor de $p$
+\newline\newline  Para encontrar los intervalos debemos despejar $p^{*}$
+$$
+\frac{ \left| p - p^{*} \right| }{\left| p \right|} \leq 10^{-4}
+$$
+
+$$
+\frac{ \left| p - p^{*} \right| }{\left| p \right|}\leq 10^{-4}\times p
+$$
+Por lo tanto
+$$
+p \pm 10^{-4}\times p
+$$
+En forma de intervalo
+$$
+[p - 10^{-4}\times p ; p + 10^{-4}\times p]
+$$
+
+\textbf{a) $\pi$}
+$$
+[\pi - 10^{-4}\times \pi ; \pi + 10^{-4}\times \pi]
+$$
+$$
+[3.141; 3.142]
+$$
+
+\textbf{b) $e$}
+
+$$
+[e - 10^{-4}\times e ; e + 10^{-4}\times e]
+$$
+$$
+[2.718; 2.719]
+$$
+
+\textbf{c) $\sqrt{2}$ }
+
+$$
+[\sqrt{2} - 10^{-4}\times \sqrt{2} ; \sqrt{2} + 10^{-4}\times \sqrt{2}]
+$$
+$$
+[1.414; 1.414]
+$$
+\textbf{d) $\sqrt[3]{7}$}
+
+$$
+[\sqrt[3]{7} - 10^{-4}\times \sqrt[3]{7} ; \sqrt[3]{7} + 10^{-4}\times \sqrt[3]{7}]
+$$
+$$
+[1.913; 1.913]
+$$
+\textbf{4}.Calcule los errores absoluto y relativo en la siguiente aproximación de $e$:
+
+$$ 
+\sum_{n = 0}^{5}(\frac{1}{n!}) = \frac{1}{0!} + \frac{1}{1!}+\frac{1}{2!}+\frac{1}{3!}+\frac{1}{4!}+\frac{1}{5!}
+=2.717    
+$$
+
+\textbf{a) Error absoluto}
+$$\left| e - 2.717 \right| = 0.001281828$$
+
+\textbf{a) Error relativo}
+$$\frac{\left| e - 2.717 \right|}{e} = 0.4715583372 * 10^{-3}$$
+
+$$ 
+\sum_{n = 0}^{10}(\frac{1}{n!}) 
+=  2.718 
+$$
+
+\textbf{b) Error absoluto}
+$$\left| e - 2.718 \right| = 0.000281828$$
+
+\textbf{b) Error relativo}
+$$\frac{\left| e - 2.718 \right|}{e} = 0.103678896 * 10^{-3}$$
+
+\textbf{5}.Use los datos $(x_0 , y_0)$ $= (1.31, 3.24)$ y $( x_1 , y_1)$  $= (1.93, 4.76)$ y la aritmética de redondeo de tres dígitos para calcular la intersección con x de ambas maneras. ¿Cuál método es mejor y por qué?
+
+Hallamos la intersección x (Opción 1)
+
+$$x = \frac{x_0y_1-x_1y_0}{y_1-y_0}$$
+$$
+x = \frac{1.31\times 4.76-1.93\times 3.24}{4.76-3.24}
+= \frac{6.236-6.253}{1.52}
+$$
+$$x = -0.011$$
+
+Hallamos la intersección x (Opción 2)
+
+$$x = x_0 - \frac{(x_1-x_0)y_0}{y_1-y_0}$$
+$$
+x = 1.31 - \frac{(1.93-1.31)\times 3.24}{4.76-3.24}
+= 1.31 -\frac{2.009}{1.52}
+= 1.31 - 1.322
+$$
+$$x = -0.012$$
+
+El mejor método en este caso es el segundo, puesto que cada operación teníamos que redondear a tres dígitos decimales, por lo que, a mayor número de multiplicaciones habría mayor error de redondeo.
+
+\vspace{0.5cm}
+
+\section*{CONCLUSIONES}
+\begin{itemize}
+    \item La resolución de problemas que contienen diferentes constantes matemáticas nos permiten recordar la importancia que tiene los recortes que inconscientemente hacemos como es el caso de pi con 3.14. 
+    \item Al realizar un mayor numero de operaciones como es el caso del problema 5 con las multiplicaciones, es mas probable que obtengamos un mayor error por los pequeños errores en cada uno de ellos. 
+\end{itemize}
+\vspace{0.5cm}
+\section*{RECOMENDACIONES}
+\begin{itemize}
+    \item Utilizar un mejor dispositivo a la hora de realizar los ejercicios nos permite disminuir el error de redondeo producido por sistemas digitales.
+   
+\end{itemize}
+
+\vspace{0.5cm}
+
+
+\renewcommand{\refname}{\MakeUppercase{REFERENCIAS}}
+\bibliographystyle{IEEEtran}
+\bibliography{inFiles/References/references.bib}
+
+\end{document}

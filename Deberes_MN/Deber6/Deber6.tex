@@ -1,0 +1,153 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{cite}
+
+\definecolor{highlight}{RGB}{255, 255, 0}
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\begin{document}
+
+% Logos
+\begin{minipage}{0.45\textwidth}
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/epnLogo.jpg}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \raggedleft
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/FIS_logo.jpg}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% Títulos principales
+\begin{center}
+    \textbf{ESCUELA POLITÉCNICA NACIONAL}\\[0.2cm]
+    \textbf{FACULTAD DE INGENIERÍA DE SISTEMAS}\\[0.2cm]
+    \textbf{INGENIERÍA{\textbf{ EN COMPUTACIÓN}}}
+\end{center}
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+% Datos principales
+\noindent\textbf{PERÍODO ACADÉMICO:} 2025-A\\[0.2cm]
+\noindent\textbf{ASIGNATURA:} ICCD412 Métodos Numéricos \hfill \textbf{GRUPO:} GR2\\[0.2cm]
+\noindent\textbf{TIPO DE INSTRUMENTO:} Tarea 6\\[0.2cm]
+\noindent\textbf{FECHA DE ENTREGA LÍMITE:} 09/05/2025\\[0.2cm]
+\noindent\textbf{ALUMNO:} Murillo Tobar Juan 
+
+\vspace{0.5cm}
+\hrule
+\vspace{1cm}
+
+
+% Secciones
+\section*{TEMA}
+Método de la secante
+
+\vspace{0.5cm}
+
+\section*{OBJETIVOS}
+\begin{itemize}
+    \item Utilizar el método de secante y de Newton para realizar comparaciones en base a sus iteraciones.
+    \item Comprender porque el método de secante es mejor en comparación con el método de Newton Raphson en términos de complejidad en sus operaciones.
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{MARCO TEÓRICO}
+\large\textbf{Método de la secante}
+\normalsize
+
+Como se menciona en \cite{sauer2013} el método de la secante es muy similar al método de Newton con la diferencia que en este método se utilizan dos aproximaciones iniciales y que la derivada es reemplazada con un cociente de diferencias finitas. 
+Por lo anterior mencionado podemos decir que la complejidad en las operaciones es menor y por lo tanto el tiempo de computo también va a ser menor en el método de la secante, pero hay que aclarar que ambos no dejan de ser métodos abiertos con posibilidad a divergencia.
+
+\vspace{0.5cm}
+
+\section*{DESARROLLO}
+1. Use el método de la secante para encontrar una solución para
+ $$x = \cos(x) (f(x) = \cos(x) - x = 0)$$ 
+con tolerancia tal que:
+$$
+\left| P_n - P_{n-1} \right| < (tolerancia = 10^{-16})
+$$
+
+y compare las aproximaciones con las determinadas en el ejemplo visto en clase, el cual aplica el método
+de Newton, resuelva hasta llegar a la misma tolerancia para este método también.
+Suponga que usamos $p_0 = 0.5$ y $p_1 = \frac{\pi}{4}$ , trabaje con 13 cifras decimales de redondeo.
+
+\large\textbf{Fórmula Secante}
+\normalsize
+
+$$
+X_n = X_{n-1} - f(X_{n-1})\times \frac{X_{n-1} - X_{n-2}}{f(X_{n-1}) - f(X_{n-2})}
+$$
+
+
+\large\textbf{Aproximaciones por Secante}
+\small
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        $X_n$ & $X_{n-1}$ & $X_{n-2}$ & $f(X_{n})$ & $E_est$\\
+        \hline
+        $0.5000000000000$ & $ $               & $ $               & $0.3775825619000$ & $ $\\
+        $0.7853981634000$ & $0.5000000000000$ & $ $               & $-0.0782913822100$ & $0.2854$\\
+        $0.7363841388000$ & $0.7853981634000$ & $0.5000000000000$ & $0.0045177185830$ & $0.04901$\\
+        $0.7390581564000$ & $0.7363841388000$ & $0.7853981634000$ & $0.0000451484193$ & $2.674*10^{-3}$\\
+        $0.7390851493000$ & $0.7390581564000$ & $0.7363841388000$ & $-0.269198*10^{-7}$ & $2.699*10^{-5}$\\
+        $0.7390851332000$ & $0.7390851493000$ & $0.7390581564000$ & $0.254*10^{-10} $ & $1.61*10^{-8}$\\
+        \hline
+      \end{tabular} 
+\end{center}
+
+\large\textbf{Fórmula Newton}
+\normalsize
+
+$$
+X_n = X_{n-1} - \frac{f(X_{n-1})}{f'(X_{n-1})}, n\geq 1
+$$
+
+\large\textbf{Aproximaciones por Newton}
+\normalsize
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        $X_n$ & $X_{n-1}$& $E_est$\\
+        \hline
+        $0.7395361335000$ & $\frac{\pi}{4} $& $0.04586$\\
+        $0.7390851781000$ & $0.7395361335000$ & $4.51*10^{-4}$\\
+        $0.7390851332000$ & $0.7390851781000$ & $4.49*10^{-8}$\\
+
+        \hline
+      \end{tabular} 
+\end{center}
+
+
+
+
+
+
+
+
+\vspace{0.5cm}
+
+
+\renewcommand{\refname}{\MakeUppercase{REFERENCIAS}}
+\bibliographystyle{IEEEtran}
+\bibliography{inFiles/References/references.bib}
+
+
+\end{document}

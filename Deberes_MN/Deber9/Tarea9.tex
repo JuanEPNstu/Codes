@@ -1,0 +1,126 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{cite}
+\usepackage{float}
+
+\definecolor{highlight}{RGB}{255, 255, 0}
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\begin{document}
+
+% Logos
+\begin{minipage}{0.45\textwidth}
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/epnLogo.jpg}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \raggedleft
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/FIS_logo.jpg}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% Títulos principales
+\begin{center}
+    \textbf{ESCUELA POLITÉCNICA NACIONAL}\\[0.2cm]
+    \textbf{FACULTAD DE INGENIERÍA DE SISTEMAS}\\[0.2cm]
+    \textbf{INGENIERÍA {\textbf{EN COMPUTACIÓN}}}
+\end{center}
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+% Datos principales
+\noindent\textbf{PERÍODO ACADÉMICO:} 2025-A\\[0.2cm]
+\noindent\textbf{ASIGNATURA:} ICCD412 Métodos Numéricos \hfill \textbf{GRUPO:} GR2\\[0.2cm]
+\noindent\textbf{TIPO DE INSTRUMENTO:} Tarea 9\\[0.2cm]
+\noindent\textbf{FECHA DE ENTREGA LÍMITE:} 25/05/2025\\[0.2cm]
+\noindent\textbf{ALUMNO:} Murillo Tobar Juan
+
+\vspace{0.5cm}
+\hrule
+\vspace{1cm}
+
+
+% Secciones
+\section*{TEMA}
+Polinomio de Taylor
+
+\vspace{0.5cm}
+
+\section*{OBJETIVOS}
+\begin{itemize}
+    \item Comprender como se obtiene el polinomio de Taylor a partir de la resolución y simplificación de sumatorios que implican multiplicaciones.
+    \item Reconocer las partes que componen a la función de aproximación, es decir, el polinomio de Taylor y el error de Truncamiento.
+
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{MARCO TEÓRICO}
+
+\textbf{Polinomio de Taylor}
+\normalsize\newline\newline
+Como se menciona en \cite{book:2450406}, este método nos proporciona un medio para aproximar 
+un valor de una función en un punto en términos del  valor de la función y sus derivadas en otro punto.
+Además, se establece que cualquier "smooth function", es decir una función que es derivable infinitamente, puede ser aproximada como un polinomio. 
+\vspace{0.5cm}
+
+\section*{DESARROLLO}
+
+\textbf{Dada la función $e^{-x}$  y $x_0 = 1$. Determinar la función aproximada $f(x)=P_n (x)+R_n(x)$ con n = 3.}
+
+Primero sacamos todas sus derivada, es decir hasta de orden 4, ya que el error de truncamiento usa 1 mas que el polinomio.
+$f(x) = e^{-x}$
+
+$f'(x) = -e^{-x}$
+
+$f''(x) = e^{-x}$
+
+$f'''(x) = -e^{-x}$
+
+$f''''(x) = e^{-x}$
+
+Ahora comenzamos a resolver el sumatorio y nos quedaría la siguiente forma
+
+$$P_n(x) = e^{-1}-e^{-1}(x-1)+ \frac{e^{-1}}{2}(x-1)^2-\frac{e^{-1}}{6}(x-1)^3$$
+
+Al elaborar un poco mas nos queda
+
+$$P_n(x) =  e^{-1} - e^{-1}x + e^{-1} + \frac{e^{-1}}{2}x^2-e^{-1}x+\frac{e^{-1}}{2}-\frac{e^{-1}}{6}x^3+\frac{e^{-1}}{2}x^2-\frac{e^{-1}}{2}x+\frac{e^{-1}}{6}$$
+
+Al simplificar términos semejantes nos queda.
+
+$$P_n(x) = \frac{-1}{6e}x^3+\frac{1}{e}x^2-\frac{5}{2e}x+\frac{16}{6e}$$
+
+Ahora resolvemos el error de truncamiento Rn, aunque en este lo dejamos expresado tal como esta
+
+
+$$R_n = \frac{e^{\xi(x)}}{24}(x-1)^4$$
+
+$$R_n = \frac{e^{\xi(x)}}{24}(x^4-4x^3+6x^2-4x+1)$$
+
+La función de aproximación nos quedaría como 
+
+$$P_n(x) = \frac{-1}{6e}x^3+\frac{1}{e}x^2-\frac{5}{2e}x+\frac{16}{6e} + \frac{e^{\xi(x)}}{24}(x^4-4x^3+6x^2-4x+1)$$
+
+
+
+\vspace{0.5cm}
+
+
+\renewcommand{\refname}{\MakeUppercase{REFERENCIAS}}
+\bibliographystyle{IEEEtran}
+\bibliography{inFiles/References/references.bib}
+
+\end{document}

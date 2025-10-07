@@ -1,0 +1,518 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{cite}
+\usepackage{float}
+\usepackage{listings}
+
+\definecolor{highlight}{RGB}{255, 255, 0}
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+%Código ejecución
+\lstset{
+    basicstyle=\ttfamily\small,  % Texto tipo código
+    backgroundcolor=\color{gray!8},  % Fondo gris claro (opcional)
+    breaklines=true,             % Corta líneas largas
+    frame=none,                  % Sin marco
+    keepspaces=true,             % Respeta espacios
+    showstringspaces=false,      % No marca espacios en strings
+    numbers=none,                % Sin números de línea
+    language=Python,             % Resaltado para Python
+}
+
+
+\begin{document}
+
+% Logos
+\begin{minipage}{0.45\textwidth}
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/epnLogo.jpg}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \raggedleft
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/FIS_logo.jpg}
+\end{minipage}
+
+
+\vspace{0.5cm}
+
+% Títulos principales
+\begin{center}
+    \textbf{ESCUELA POLITÉCNICA NACIONAL}\\[0.2cm]
+    \textbf{FACULTAD DE INGENIERÍA DE SISTEMAS}\\[0.2cm]
+    \textbf{INGENIERÍA {\textbf{EN COMPUTACIÓN}}}
+\end{center}
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+% Datos principales
+\noindent\textbf{PERÍODO ACADÉMICO:} 2025-A\\[0.2cm]
+\noindent\textbf{ASIGNATURA:} ICCD412 Métodos Numéricos \hfill \textbf{GRUPO:} GR2\\[0.2cm]
+\noindent\textbf{TIPO DE INSTRUMENTO:} Practica 4\\[0.2cm]
+\noindent\textbf{FECHA DE ENTREGA LÍMITE:} 02/06/2025\\[0.2cm]
+\noindent\textbf{ALUMNO:} Murillo Tobar Juan
+
+\vspace{0.5cm}
+\hrule
+\vspace{1cm}
+
+
+% Secciones
+\section{TEMA}
+Polinomio de Taylor, Lagrange
+
+\vspace{0.5cm}
+
+\section{OBJETIVOS}
+\begin{itemize}
+    \item Comprender como se obtiene el polinomio de Taylor a partir de la resolución y simplificación de sumatorios que implican multiplicaciones.
+    \item Relacionar las diferencias entre la serie de sumas del polinomio de Taylor y la serie de multiplicaciones de la serie de Lagrange.
+
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section{MARCO TEÓRICO}
+
+\textbf{Polinomio de Taylor}
+\normalsize\newline\newline
+Como se menciona en \cite{book:2450406}, este método nos proporciona un medio para aproximar 
+un valor de una función en un punto en términos del  valor de la función y sus derivadas en otro punto.
+Además, se establece que cualquier "smooth function", es decir una función que es derivable infinitamente, puede ser aproximada como un polinomio. 
+\vspace{0.5cm}
+
+\section{DESARROLLO}
+
+\textbf{Para las siguientes funciones, usar el polinomio de Taylor:} 
+
+$e^{sin x}, x_0 = 1, n = 3$
+
+Primero sacamos todas sus derivadas
+
+\textbf{a)} $f(x) = e^{sin x}$
+
+$f'(x) = e^{sin x}cosx$
+
+$f''(x) = e^{sin x}cos^2x-sin(x)e^{sinx}$
+
+$f'''(x) = (-3sinx+ cos^2x - 1)e^{sinx}cosx$
+
+$f''''(x) = (3sin^2x - 6sinxcos^2x + sinx + cos^4x - 4cos^2x)e^{sinx}$
+
+Ahora comenzamos a resolver el sumatorio y nos quedaría la siguiente forma
+\footnotesize
+
+$$P_n(x) = e^{sin 1}+e^{sin 1}cos1(x-1)+\frac{e^{sin 1}cos^2(1)-sin(1)e^{sin(1)}}{2}(x-1)^2+\frac{(-3sin(1)+ cos^2(1) - 1)e^{sin(1)}cos(1)}{6}(x-1)^3$$
+
+\normalsize
+
+Ahora resolvemos el error de truncamiento Rn.
+
+
+\footnotesize
+
+$$R_n = \frac{(3sin^2(\xi(x)) - 6sin(\xi(x))cos^2(\xi(x)) + sin(\xi(x)) + cos^4(\xi(x)) - 4cos^2(\xi(x)))e^{sin(\xi(x))}}{24}(x-1)^4$$
+\normalsize
+La función de aproximación nos quedaría como 
+\footnotesize
+$$P_n(x) = e^{sin 1}+e^{sin 1}cos1(x-1)+\frac{e^{sin 1}cos^2(1)-sin(1)e^{sin(1)}}{2}(x-1)^2+\frac{(-3sin(1)+ cos^2(1) - 1)e^{sin(1)}cos(1)}{6}(x-1)^3$$
+
+$$+$$
+
+$$\frac{(3sin^2(\xi(x)) - 6sin(\xi(x))cos^2(\xi(x)) + sin(\xi(x)) + cos^4(\xi(x)) - 4cos^2(\xi(x)))e^{sin(\xi(x))}}{24}(x-1)^4$$
+\normalsize
+
+\textbf{b)} $ln(1+x), x_0 = 2, n = 5$
+
+Primero sacamos todas sus derivadas
+
+$f(x) = ln(x+1)$
+
+$f'(x) = \frac{1}{(x + 1)}$
+
+$f''(x) = -\frac{1}{(x + 1)^2}$
+
+$f'''(x) = \frac{2}{(x + 1)^3}$
+
+$f''''(x) = -\frac{6}{(x + 1)^4}$
+
+$f'''''(x) = \frac{24}{(x + 1)^5}$
+
+$f''''''(x) = -\frac{120}{(x + 1)^6}$
+
+Ahora comenzamos a resolver el sumatorio y nos quedaría la siguiente forma
+\footnotesize
+
+$$P_n(x) = ln(1+x)+\frac{1}{(x + 1)}(x-2)-\frac{1}{2(x + 1)^2}(x-2)^2+\frac{2}{6(x + 1)^3}(x-2)^3-\frac{6}{24(x + 1)^4}(x-2)^4+\frac{24}{120(x + 1)^5}(x-2)^5$$
+
+\normalsize
+Ahora resolvemos el error de truncamiento Rn.
+
+
+\footnotesize
+
+$$R_n = \frac{-\frac{120}{(\xi(x) + 1)^6}}{720}(x-1)^6$$
+
+$$R_n = -\frac{120}{720(\xi(x) + 1)^6}(x-1)^6$$
+\normalsize
+La función de aproximación nos quedaría como 
+\tiny
+
+$$P_n(x) = P(x) = (1/1215)x^5 - (1/36)x^4 + (17/243)x^3 - (131/486)x^2 + (211/243)x + (ln(3) - 1126/1215)-\frac{120}{720(\xi(x) + 1)^6}(x^6 - 6x^5 + 15x^4 - 20x^3 + 15x^2 - 6x + 1)$$
+
+
+\normalsize
+
+\textbf{c)} $cos2x , x_0 = \frac{\pi }{2}, n =3$
+
+Primero sacamos todas sus derivadas
+
+$f(x) = cos2x$
+
+$f'(x) = -2sin(2x)$
+
+$f''(x) = -4cos(2x)$
+
+$f'''(x) = 8sin(2x)$
+
+$f''''(x) = 16cos(2x)$
+
+Ahora comenzamos a resolver el sumatorio y nos quedaría la siguiente forma
+\footnotesize
+
+$$P_n(x) = cos2x-2sin(2x)(x -\frac{\pi }{2})-4cos(2x)\frac{(x - \frac{\pi }{2})^2}{2}+8sin(2x)\frac{(x - \frac{\pi }{2})^3}{6}$$
+
+$$= (-1) - 0*(x-\pi/2) - (-2)*(x-\pi/2)^2 + 0*(x-\pi/2)^3$$
+$$= -1 + 2*(x-\pi/2)^2$$
+$$P(x)= 2x^2 - 2\pi x + (\pi^2/2 - 1)$$
+\normalsize
+Ahora resolvemos el error de truncamiento Rn.
+
+$$R_n = \frac{16cos(2\xi(x))}{24}(x-1)^4$$
+\normalsize
+La función de aproximación nos quedaría como 
+\footnotesize
+
+$$P_n(x) = 2x^2 - 2\pi x + (\pi^2/2 - 1)+ \frac{16cos(2\xi(x))}{24}(x^4 - 4x^3 + 6x^2 - 4x + 1)$$
+\normalsize
+
+\textbf{d)} $\sqrt[3]{x},x_0=2, n =4$
+
+Primero sacamos todas sus derivadas
+
+$f(x) = x^{1/3}$
+
+$f'(x) = \frac{1}{3x^{2/3}}$
+
+$f''(x) = -\frac{2}{9x^{5/3}}$
+
+$f'''(x) = \frac{10}{27x^{8/3}}$
+
+$f''''(x) = -\frac{80}{81x^{11/3}}$
+
+$f'''''(x) = \frac{880}{243x^{14/3}}$
+
+Ahora comenzamos a resolver el sumatorio y nos quedaría la siguiente forma
+\footnotesize
+
+$$P_n(x) = x^{1/3}+\frac{1}{3x^{2/3}}(x -2)-\frac{2}{9x^{5/3}}\frac{(x -2)^2}{2}+\frac{10}{27x^{8/3}}\frac{(x -2)^3}{6}-\frac{80}{81x^{11/3}}\frac{(x -2)^4}{24}$$
+
+\normalsize
+Ahora resolvemos el error de truncamiento Rn.
+
+$$R_n = \frac{\frac{880}{243\xi(x)^{14/3}}}{120}(x-1)^5$$
+
+$$R_n = \frac{22}{729\xi(x)^{14/3}}(x-1)^5$$
+
+
+La función de aproximación nos quedaría como 
+\footnotesize
+$$P_n(x) = -5/(243·2^{(11/3)})x^4 + 20/(243·2^{8/3})x^3 - 137/(243·2^{(8/3)})x^2 + 269/(243·2^{(8/3)})x + 40/(243·2^{(8/3)})+\frac{22}{729\xi(x)^{14/3}}(x-1)^5$$
+\normalsize
+
+\textbf{e)} $cos\pi  x^2,x_0=0, n =6$
+
+Como el punto de evaluación es cero no se puede.
+
+\textbf{f)} $\frac{x}{e^x},x_0=3, n =3$
+
+Primero sacamos todas sus derivadas
+
+$f(x) = \frac{x}{e^x}$
+
+$f'(x) = -xe^{-x} + e^{-x}$
+
+$f''(x) = (x - 2)e^{-x}$
+
+$f'''(x) = (3 - x)e^{-x}$
+
+$f''''(x) = (x - 4)e^{-x}$
+
+Ahora comenzamos a resolver el sumatorio y nos quedaría la siguiente forma
+\footnotesize
+
+$$
+P_n(x) = \frac{3}{e^3} - 2e^{-3}(x-3) + \frac{e^{-3}(x-3)^2}{2} 
+$$
+
+$$
+P_n(x)=\frac{3}{e^3} - 2e^{-3}x + 6e^{-3} + \frac{e^{-3}(x^2 - 6x + 9)}{2} 
+$$
+
+$$
+P_n(x) =\left(\frac{3}{e^3} + \frac{6}{e^3}\right) + \left(\frac{-2x}{e^3} - \frac{6x}{2e^3}\right) + \frac{x^2}{2e^3} + \frac{9}{2e^3} 
+$$
+
+$$
+P_n(x)= \frac{9}{e^3} + \frac{-4x -6x}{2e^3} + \frac{x^2}{2e^3} + \frac{9}{2e^3} 
+$$
+
+$$
+P_n(x)=\frac{18}{2e^3} + \frac{9}{2e^3} + \frac{-10x}{2e^3} + \frac{x^2}{2e^3} 
+$$
+
+$$
+P_n(x)= \frac{x^2 - 10x + 27}{2e^3}
+$$
+
+\normalsize
+
+Ahora resolvemos el error de truncamiento Rn.
+
+$$R_n = \frac{(\xi - 4)e^{-\xi}}{24}(x-1)^4$$
+
+La función de aproximación nos quedaría como 
+
+\footnotesize
+
+$$P_n(x)= \frac{x^2 - 10x + 27}{2e^3}+\frac{(\xi(x) - 4)e^{-\xi(x)}}{24}(x^4 - 4x^3 + 6x^2 - 4x + 1)$$
+
+\normalsize
+
+
+\textbf{Determine para el ejercicio 1.a el polinomio de Taylor dado que x = 1.5 y un error relativo de 0.0001} 
+
+
+Para esto  calcularemos los diferentes valores con redondeo de 6 cifras decimales
+
+$P_1 = 2.946467$
+\large
+
+$E_{rel} = | \frac{e^{sin(1.5)} - 2.946467}{e^{sin(1.5)}}| = 0.086663$
+\normalsize
+
+$P_2 = 2.946467$
+\large
+
+$E_{rel} = | \frac{e^{sin(1.5)} - 2.787115}{e^{sin(1.5)}}| = 0.027894$
+\normalsize
+
+$P_3 = 2.702708$
+\large
+
+$E_{rel} = | \frac{e^{sin(1.5)} - 2.702708}{e^{sin(1.5)}}| = 0.003236$
+\normalsize
+
+$P_4 = 2.705180$
+\large
+
+$E_{rel} = | \frac{e^{sin(1.5)} - 2.705180}{e^{sin(1.5)}}| = 0.002324$
+\normalsize
+
+$P_5 = 2.711367$
+\large
+
+$E_{rel} = | \frac{e^{sin(1.5)} - 2.711366}{e^{sin(1.5)}}| = 0.000042$
+\normalsize
+
+Hasta aquí ya se cumple la condición por lo tanto seria $P_4$
+
+
+\textbf{Dados los siguientes puntos, usar el polinomio de Lagrange:} 
+
+
+\textbf{a)} (2,1.43);(3.20,2.79);(4,3.56)
+
+Encontramos los $L_n(x)$
+
+
+$$L_0(x) = \frac{(x-3.20)(x-4)}{(2.4)}$$
+
+$$L_1(x) = \frac{(x-2)(x-4)}{(-0.96)}$$
+
+$$L_2(x) = \frac{(x-2)(x-3.20)}{(1.6)}$$
+
+Ahora reemplazamos para formar el polinomio 
+
+$$P(x) = 1.43\frac{(x-3.20)(x-4)}{(2.4)} +2.79\frac{(x-2)(x-4)}{(-0.96)}+3.56\frac{(x-2)(x-3.20)}{(1.6)}$$
+
+$$P(x) = (143/240)(x - 16/5)(x - 4) - (93/32)(x - 2)(x - 4) + (89/40)(x - 2)(x - 16/5)$$
+
+\footnotesize
+
+$$P(x) = (143/240)x² - (429/100)x + (572/75) - (93/32)x² + (279/16)x - (93/4) + (89/40)x² - (1157/100)x + (356/25)$$
+
+\normalsize
+
+$$P(x) = -41/480x^2 + 631/400x -83/60$$
+
+
+
+\textbf{b)} (1,10);(-4;10);(-7;34)
+
+$$L_0(x) = \frac{(x+4)(x+7)}{(40)}$$
+
+$$L_1(x) = \frac{(x-1)(x+7)}{(-15)}$$
+
+$$L_2(x) = \frac{(x-1)(x+4)}{(24)}$$
+
+Ahora reemplazamos para formar el polinomio 
+
+$$P(x) = 10\frac{(x+4)(x+7)}{(40)} +10\frac{(x-1)(x+7)}{(-15)}+34\frac{(x-1)(x+4)}{(24)}$$
+
+$$= (1/4)(x+4)(x+7) - (2/3)(x-1)(x+7) + (17/12)(x-1)(x+4)$$
+
+$$= (1/4)(x² + 11x + 28) - (2/3)(x² + 6x - 7) + (17/12)(x² + 3x - 4)$$
+
+$$= (1/4)x² + (11/4)x + 7 - (2/3)x² - 4x + (14/3) + (17/12)x² + (17/4)x - (17/3)$$
+
+$$x²: (1/4 - 2/3 + 17/12) = (3/12 - 8/12 + 17/12) = 1$$
+
+$$x: (11/4 - 4 + 17/4) = (11/4 - 16/4 + 17/4) = 3$$
+
+$$CTE: (7 + 14/3 - 17/3) = (21/3 + 14/3 - 17/3) = 6$$
+
+
+
+$$P(x) = x^2 + 3x  +6$$
+
+\textbf{c)} (4,808);(0,4);(-6;1438);(-4;160)
+
+$$L_0(x) = \frac{(x-0)(x+6)(x+4)}{(320)}$$
+
+$$L_1(x) = \frac{(x-4)(x+6)(x+4)}{(-96)}$$
+
+$$L_2(x) = \frac{(x-4)(x-0)(x+4)}{(-120)}$$
+
+$$L_3(x) = \frac{(x-4)(x-0)(x+6)}{(64)}$$
+
+Ahora reemplazamos para formar el polinomio 
+\footnotesize
+$$
+P(x) = 808·x(x+6)(x+4)/320 
+       + 4·(x-4)(x+6)(x+4)/(-96) 
+       + 1438·(x-4)x(x+4)/(-120) 
+       + 160·(x-4)x(x+6)/64
+$$
+
+$$
+= (101/40)x³ + (101/4)x² + (303/5)x 
+  - (1/24)x³ - (1/4)x² + (2/3)x + 4 
+  - (719/60)x³ + (2876/15)x 
+  + (5/2)x³ + 5x² - 60x
+$$
+
+$$
+= [(303/120-5/120-1438/120+300/120)x³] 
+  + [(100/4+5)x²] 
+  + [(909/15+10/15+2876/15-900/15)x] 
+  + [4]
+$$
+
+$= (-840/120)x³ + 30x² + (2895/15)x + 4$
+\normalsize
+$$P(x) = -7x^3 + 30x^2  +193x+4$$
+
+\textbf{Corrección del código} 
+
+\scriptsize
+\begin{verbatim}
+    def polinomio_taylor(func_str, x0, grado, decimales):
+        
+        """
+        :func_str: string, función original
+        :x0: entero, punto alrededor del cual se desarrolla el polinomio    
+        :grado: entero, grado de polinomio de Taylor    
+        :decimales: entero, decimales a truncar
+        :return: polinomio de taylor aproximado a la función origianl, f(x) = P_n(x) + R_n(x)
+        """
+        
+        x = sp.Symbol('x')
+        f = sp.sympify(func_str)
+
+        taylor_expr = 0
+
+        for n in range(grado + 1):
+            derivada = f.diff(x, n)
+            deriv_val = derivada.subs(x, x0)
+            factorial_n = sp.factorial(n)
+            coef = deriv_val / factorial_n
+
+            if coef.is_number:
+                coef = truncar(float(coef), decimales)
+
+            if coef == 0:
+                continue
+
+            base = (x - x0)**n if x0 != 0 else x**n
+            taylor_expr += coef * base
+
+        taylor_expr = sp.expand(taylor_expr)
+        taylor_expr = sp.collect(taylor_expr, x)
+        lista = ["("+str(truncar(taylor_expr.coeff(x,aux), decimales))+")*x**"+str(aux) for aux in range(grado+1)][::-1]
+        exp = "+".join(lista)
+        print(exp)
+        taylor_expr = sp.sympify(exp)
+        Pn_str = str(taylor_expr)
+
+        n_plus_1 = grado + 1
+        factorial_np1 = sp.factorial(n_plus_1)
+        inverso_truncado = truncar(1 / float(factorial_np1), decimales)
+
+        base_error = sp.expand((x - x0)**n_plus_1)
+        Rn_str = f"( {inverso_truncado}*{func_str}^({n_plus_1})(\xi(x)) )*({base_error})"
+
+        print(f"P_n(x) = {Pn_str}")
+        print(f"R_n(x) = {Rn_str}")
+
+        return f"f(x) = {Pn_str} + {Rn_str}"
+\end{verbatim}
+
+\colorbox{highlight}{Cambio realizado}
+\begin{verbatim}
+        lista = ["("+str(truncar(taylor_expr.coeff(x,aux), decimales))+")*x**"+str(aux) for aux in range(grado+1)][::-1]
+        exp = "+".join(lista)
+        print(exp)
+        taylor_expr = sp.sympify(exp)
+\end{verbatim}
+\normalsize
+
+
+\vspace{0.5cm}
+\section*{CONCLUSIONES}
+\begin{itemize}
+    \item El polinomio de Taylor cuando el centroide es 0 no funciona y para su resolución se debe aplicar los valores al sumatorio. 
+    \item El polinomio de Lagrange es un poco menos complejo a la hora de realizar operaciones como es el caso del polinomio de Taylor.
+\end{itemize}
+\vspace{0.5cm}
+\section*{RECOMENDACIONES}
+\begin{itemize}
+    \item Fijarse en $X_0$ cuando nos toque realizar el polinomio de Taylor.
+   
+\end{itemize}
+
+\renewcommand{\refname}{\MakeUppercase{REFERENCIAS}}
+\bibliographystyle{IEEEtran}
+\bibliography{inFiles/References/references.bib}
+
+\end{document}
